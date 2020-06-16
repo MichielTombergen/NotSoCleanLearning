@@ -1,0 +1,51 @@
+﻿@model CleanLearning.Models.TestResultFeedback
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>TestResultFeedback</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Text)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Text)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ReadStatus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ReadStatus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teacher.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teacher.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.TestResult.ID)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.TestResult.ID)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.ID }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

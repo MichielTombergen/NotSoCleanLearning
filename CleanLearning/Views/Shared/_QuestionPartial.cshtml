@@ -1,0 +1,24 @@
+﻿@model CleanLearning.Models.AnswerOption
+
+@Html.ValidationSummary(true, "", new { @class = "text-danger" })
+<div class="col-sm-12 answerWrapper">
+    <div class="form-group col-sm-6">
+        @Html.LabelFor(model => model.AnswerText, "Answer", htmlAttributes: new { @class = "control-label col-sm-4" })
+        <div class="col-sm-8">
+            @Html.ValidationMessageFor(model => model.AnswerText, "", new { @class = "text-danger" })
+        </div>
+    </div>
+
+    <div class="form-group col-sm-4">
+        @Html.LabelFor(model => model.CorrectAnswer, "Correct Answer", htmlAttributes: new { @class = "form-check-label col-sm-5" })
+        <div class="col-sm-5">
+            <select class="form-control" name="CorrectAnswer" id="select_option">
+                <option value="1">Yes</option>
+                <option value="0" selected>No</option>
+            </select>
+            @Html.ValidationMessageFor(model => model.CorrectAnswer, "", new { @class = "text-danger" })
+        </div>
+    </div>
+    <div class="col-sm-2"><a class="btn btn-danger deleteAnswer">Delete<i class="fas fa-times"></i></a></div>
+</div>
+

@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2d74e161b73346b8b553364e6293bf53" Name="Diagram1">
+        <EntityTypeShape EntityType="michiyf248_clModel.Module" Width="2.125" PointX="0.875" PointY="16.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="michiyf248_clModel.ModuleSubscription" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="michiyf248_clModel.Question" Width="1.5" PointX="0.75" PointY="1.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="michiyf248_clModel.QuestionFeedback" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="michiyf248_clModel.QuestionResult" Width="1.5" PointX="3" PointY="8.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="michiyf248_clModel.Student" Width="1.5" PointX="0.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="michiyf248_clModel.Teacher" Width="1.5" PointX="1.5" PointY="19.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="michiyf248_clModel.Test" Width="1.5" PointX="1.5" PointY="12.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="michiyf248_clModel.TestResult" Width="1.5" PointX="6" PointY="5.625" IsExpanded="true" />
+        <AssociationConnector Association="michiyf248_clModel.FK_Module_Teacher" ManuallyRouted="false" />
+        <AssociationConnector Association="michiyf248_clModel.FK_ModuleSubscription_ModuleID" ManuallyRouted="false" />
+        <AssociationConnector Association="michiyf248_clModel.FK_Test_ModuleID" ManuallyRouted="false" />
+        <AssociationConnector Association="michiyf248_clModel.FK_ModuleSubscription_StudentID" ManuallyRouted="false" />
+        <AssociationConnector Association="michiyf248_clModel.FK_Question_TestID" ManuallyRouted="false" />
+        <AssociationConnector Association="michiyf248_clModel.FK_QuestionFeedback_QuestionID" ManuallyRouted="false" />
+        <AssociationConnector Association="michiyf248_clModel.FK_QuestionResult_QuestionID" ManuallyRouted="false" />
+        <AssociationConnector Association="michiyf248_clModel.FK_QuestionFeedback_StudentID" ManuallyRouted="false" />
+        <AssociationConnector Association="michiyf248_clModel.FK_QuestionResult_StudentID" ManuallyRouted="false" />
+        <AssociationConnector Association="michiyf248_clModel.FK_TestResult_StudentID" ManuallyRouted="false" />
+        <AssociationConnector Association="michiyf248_clModel.FK_TestResult_TestID" ManuallyRouted="false" />
+        <EntityTypeShape EntityType="michiyf248_clModel.Notification" Width="1.5" PointX="3.75" PointY="20.25" />
+        <AssociationConnector Association="michiyf248_clModel.FK_Notification_ModuleID" />
+        <AssociationConnector Association="michiyf248_clModel.FK_Notification_TeacherID" />
+        <EntityTypeShape EntityType="michiyf248_clModel.Skill" Width="1.5" PointX="1.5" PointY="23.25" />
+        <EntityTypeShape EntityType="michiyf248_clModel.TeacherSkill" Width="1.5" PointX="3.75" PointY="23.25" />
+        <AssociationConnector Association="michiyf248_clModel.TeacherSkill_ibfk_2" />
+        <AssociationConnector Association="michiyf248_clModel.TeacherSkill_ibfk_1" />
+        <EntityTypeShape EntityType="michiyf248_clModel.QuestionResultFeedback" Width="1.5" PointX="5.25" PointY="14.625" />
+        <EntityTypeShape EntityType="michiyf248_clModel.TestResultFeedback" Width="1.5" PointX="11.25" PointY="13" />
+        <AssociationConnector Association="michiyf248_clModel.FK_QuestionResultFeedback_QuestionResultID" />
+        <AssociationConnector Association="michiyf248_clModel.FK_QuestionResultFeedback_TeacherID" />
+        <AssociationConnector Association="michiyf248_clModel.FK_TestFeedback_TeacherID1" />
+        <AssociationConnector Association="michiyf248_clModel.FK_TestFeedback_TestResultID1" />
+        <EntityTypeShape EntityType="michiyf248_clModel.AnswerOption" Width="1.5" PointX="3" PointY="0.75" />
+        <AssociationConnector Association="michiyf248_clModel.FK_AnswerOption_QuestionID" />
+        <EntityTypeShape EntityType="michiyf248_clModel.FAQ" Width="1.5" PointX="5.375" PointY="0.75" />
+        <EntityTypeShape EntityType="michiyf248_clModel.TestFeedback" Width="1.5" PointX="5.75" PointY="9" />
+        <AssociationConnector Association="michiyf248_clModel.FK_TestFeedback_StudentID" />
+        <AssociationConnector Association="michiyf248_clModel.FK_TestFeedback_TestID" />
+        <EntityTypeShape EntityType="michiyf248_clModel.SupportingTeacher" Width="1.5" PointX="6.75" PointY="18.625" />
+        <AssociationConnector Association="michiyf248_clModel.FK_SupportingTeacher_ModuleID" />
+        <AssociationConnector Association="michiyf248_clModel.FK_SupportingTeacher_TeacherID" />
+        <EntityTypeShape EntityType="michiyf248_clModel.ModuleRequirements" Width="1.5" PointX="6.75" PointY="21.75" />
+        <AssociationConnector Association="michiyf248_clModel.FK_ModuleRequirements_ModuleID" />
+        <AssociationConnector Association="michiyf248_clModel.FK_ModuleRequirements_SkillID" />
+        <EntityTypeShape EntityType="michiyf248_clModel.NewFAQ" Width="1.5" PointX="7.625" PointY="2.375" />
+        <AssociationConnector Association="michiyf248_clModel.FK_NewFAQ_FAQ" />
+        </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

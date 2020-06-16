@@ -1,0 +1,81 @@
+﻿@model IEnumerable<CleanLearning.Models.Teacher>
+
+@{
+    ViewBag.Title = @ViewData["title"];
+
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Possible supporting teachers</h2>
+
+@Styles.Render("~/Content/dataTables")
+
+<div class="container">
+
+    <hr />
+
+    <div class="row top-buffer">
+        <div class="col-md-12">
+            <table id="showPerModule" class="table table table-striped table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th>
+                            First name
+                        </th>
+                        <th>
+                            Last name
+                        </th>
+                        <th>
+                    
+                        </th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var link = Url.Action("Details", "ModuleSubscriptions", new { id = item.ID });
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.FirstName)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.LastName)
+                        </td>
+                        <td>
+                            @Html.ActionLink("Add as supporting teacher", "AddSupportingTeacher", new { teacherID = item.ID, moduleID = ViewBag.Title })
+                        </td>
+                    </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-default btn-sm" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");">
+                <span class="glyphicon glyphicon-chevron-left"></span> Back to dashboard
+            </button>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
+    <script type="text/javascript">
+
+            $(document).ready(function () {
+                $('#showPerModule').DataTable(
+                    {
+                        "pagingType": "simple",
+                        "columnDefs": [
+                            { targets: 4, orderable: false }
+                        ]
+                    }
+                );
+            });
+    </script>
+}

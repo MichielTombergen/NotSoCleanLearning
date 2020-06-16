@@ -1,0 +1,24 @@
+﻿@{
+    ViewBag.Title = "Experience";
+}
+
+@model List<CleanLearning.Models.Language>
+
+<h2>@ViewBag.Title.</h2>
+<h3>@ViewBag.Message</h3>
+
+<table class="table">
+    <tr>
+        <th>Language</th>
+        <th>Number of rows</th>
+    </tr>
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>@item.language</td>
+            <td>@item.numOfRows</td>
+        </tr>
+    }
+</table>
+
+

@@ -1,0 +1,87 @@
+﻿@model IEnumerable<CleanLearning.Models.ModuleSubscription>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<h2>Module Subscriptions</h2>
+
+
+@Styles.Render("~/Content/dataTables")
+
+<div class="container">
+
+    <hr />
+
+    <div class="col-md-12">
+        <button type="button" class="btn btn-default btn-sm" onclick="@("window.location.href='" + @Url.Action("Create", "ModuleSubscriptions") + "'");">
+            <span class="glyphicon glyphicon-plus"></span> Create new
+        </button>
+    </div>
+
+
+    <div class="row top-buffer">
+        <div class="col-md-12">
+            <table id="modulesubscriprions" class="table table table-striped table-hover table-responsive">
+                <thead>
+                    <tr>
+                        <th>
+                            Student
+                        </th>
+                        <th>
+                            Module
+                        </th>
+                        <th></th>
+                    </tr>
+                </thead>
+
+                <tbody>
+                    @foreach (var item in Model)
+                    {
+                        var link = Url.Action("Details", "ModuleSubscriptions", new { id = item.ID });
+                        <tr>
+                            <td onclick="Redirect('@link')">
+                                @Html.DisplayFor(modelItem => item.Student.FirstName) @Html.DisplayFor(modelItem => item.Student.LastName)
+                            </td>
+                            <td onclick="Redirect('@link')">
+                                @Html.DisplayFor(modelItem => item.Module.Name)
+                            </td>
+                            <td>
+                                @Html.ActionLink("Edit", "Edit", new { id = item.ID }) |
+                                @Html.ActionLink("Details", "Details", new { id = item.ID }) |
+                                @Html.ActionLink("Delete", "Delete", new { id = item.ID })
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12">
+            <button type="button" class="btn btn-default btn-sm" onclick="@("window.location.href='" + @Url.Action("Index", "Home") + "'");">
+                <span class="glyphicon glyphicon-chevron-left"></span> Back to dashboard
+            </button>
+        </div>
+    </div>
+</div>
+
+@section scripts {
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.css" />
+    <script type="text/javascript" src="https://cdn.datatables.net/v/dt/dt-1.10.21/datatables.min.js"></script>
+    <script type="text/javascript">
+
+            $(document).ready(function () {
+                $('#modulesubscriprions').DataTable(
+                    {
+                        "pagingType": "simple",
+                        "columnDefs": [
+                            { targets: 2, orderable: false }
+                        ]
+                    }
+                );
+            });
+    </script>
+}

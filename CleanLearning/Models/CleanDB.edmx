@@ -1,0 +1,1629 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="michiyf248_clModel.Store" Provider="MySql.Data.MySqlClient" ProviderManifestToken="5.5" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="AnswerOption">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="CorrectAnswer" Type="int" Nullable="false" />
+          <Property Name="AnswerText" Type="varchar" MaxLength="512" Nullable="false" />
+        </EntityType>
+        <EntityType Name="FAQ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question" Type="varchar" MaxLength="512" Nullable="false" />
+          <Property Name="Answer" Type="varchar" MaxLength="512" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleCode" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Teacher" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="256" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ModuleRequirements">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleID" Type="int" Nullable="false" />
+          <Property Name="SkillID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="ModuleSubscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="ModuleID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="NewFAQ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Question" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Answered" Type="bool" Nullable="false" />
+          <Property Name="AnsweredByFAQ" Type="int" />
+        </EntityType>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleID" Type="int" Nullable="false" />
+          <Property Name="TeacherID" Type="int" Nullable="false" />
+          <Property Name="Text" Type="varchar" MaxLength="512" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TestID" Type="int" Nullable="false" />
+          <Property Name="QuestionText" Type="varchar" MaxLength="512" Nullable="false" />
+          <Property Name="Answer" Type="varchar" MaxLength="768" Nullable="false" />
+          <Property Name="Scoring" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionFeedback">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="Feedback" Type="varchar" MaxLength="512" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionResult">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionID" Type="int" Nullable="false" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="AnswerText" Type="varchar" MaxLength="512" Nullable="false" />
+          <Property Name="AnswerOption_ID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="QuestionResultFeedback">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="QuestionResultID" Type="int" Nullable="false" />
+          <Property Name="TeacherID" Type="int" Nullable="false" />
+          <Property Name="Text" Type="varchar" MaxLength="512" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SkillName" Type="varchar" MaxLength="130" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="SupportingTeacher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleID" Type="int" Nullable="false" />
+          <Property Name="TeacherID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="LastName" Type="varchar" MaxLength="64" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="128" Nullable="false" />
+          <Property Name="GithubUser" Type="varchar" MaxLength="64" />
+        </EntityType>
+        <EntityType Name="TeacherSkill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TeacherID" Type="int" Nullable="false" />
+          <Property Name="SkillID" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ModuleID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="varchar" MaxLength="128" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestFeedback">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TestID" Type="int" Nullable="false" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="Feedback" Type="varchar" MaxLength="512" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestResult">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TestID" Type="int" Nullable="false" />
+          <Property Name="StudentID" Type="int" Nullable="false" />
+          <Property Name="Score" Type="double" Nullable="false" />
+        </EntityType>
+        <EntityType Name="TestResultFeedback">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="TestResultID" Type="int" Nullable="false" />
+          <Property Name="TeacherID" Type="int" Nullable="false" />
+          <Property Name="Text" Type="varchar" MaxLength="512" />
+          <Property Name="ReadStatus" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_AnswerOption_QuestionID">
+          <End Role="Question" Type="Self.Question" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="AnswerOption" Type="Self.AnswerOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AnswerOption">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Module_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Module" Type="Self.Module" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Module">
+              <PropertyRef Name="Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleRequirements_ModuleID">
+          <End Role="Module" Type="Self.Module" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ModuleRequirements" Type="Self.ModuleRequirements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModuleRequirements">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleRequirements_SkillID">
+          <End Role="Skill" Type="Self.Skill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ModuleRequirements" Type="Self.ModuleRequirements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModuleRequirements">
+              <PropertyRef Name="SkillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleSubscription_ModuleID">
+          <End Role="Module" Type="Self.Module" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ModuleSubscription" Type="Self.ModuleSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModuleSubscription">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleSubscription_StudentID">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="ModuleSubscription" Type="Self.ModuleSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModuleSubscription">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_NewFAQ_FAQ">
+          <End Role="FAQ" Type="Self.FAQ" Multiplicity="0..1" />
+          <End Role="NewFAQ" Type="Self.NewFAQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAQ">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NewFAQ">
+              <PropertyRef Name="AnsweredByFAQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_ModuleID">
+          <End Role="Module" Type="Self.Module" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_TeacherID">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Notification" Type="Self.Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_TestID">
+          <End Role="Test" Type="Self.Test" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionFeedback_QuestionID">
+          <End Role="Question" Type="Self.Question" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuestionFeedback" Type="Self.QuestionFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionFeedback">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionFeedback_StudentID">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuestionFeedback" Type="Self.QuestionFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionFeedback">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionResult_StudentID">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuestionResult" Type="Self.QuestionResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionResult">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionResultFeedback_QuestionResultID">
+          <End Role="QuestionResult" Type="Self.QuestionResult" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuestionResultFeedback" Type="Self.QuestionResultFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionResult">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionResultFeedback">
+              <PropertyRef Name="QuestionResultID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionResultFeedback_TeacherID">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuestionResultFeedback" Type="Self.QuestionResultFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionResultFeedback">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupportingTeacher_ModuleID">
+          <End Role="Module" Type="Self.Module" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SupportingTeacher" Type="Self.SupportingTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SupportingTeacher">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupportingTeacher_TeacherID">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="SupportingTeacher" Type="Self.SupportingTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SupportingTeacher">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeacherSkill_SkillID">
+          <End Role="Skill" Type="Self.Skill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TeacherSkill" Type="Self.TeacherSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeacherSkill">
+              <PropertyRef Name="SkillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TeacherSkill_TeacherID">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TeacherSkill" Type="Self.TeacherSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeacherSkill">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_ModuleID">
+          <End Role="Module" Type="Self.Module" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestFeedback_StudentID">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TestFeedback" Type="Self.TestFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestFeedback">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestFeedback_TeacherID">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TestResultFeedback" Type="Self.TestResultFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestResultFeedback">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestFeedback_TestID">
+          <End Role="Test" Type="Self.Test" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TestFeedback" Type="Self.TestFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestFeedback">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestFeedback_TestResultID">
+          <End Role="TestResult" Type="Self.TestResult" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TestResultFeedback" Type="Self.TestResultFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestResult">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestResultFeedback">
+              <PropertyRef Name="TestResultID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestResult_StudentID">
+          <End Role="Student" Type="Self.Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestResult">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestResult_TestID">
+          <End Role="Test" Type="Self.Test" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestResult">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="QuestionResult_ibfk_1">
+          <End Role="Question" Type="Self.Question" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="QuestionResult" Type="Self.QuestionResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionResult">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="michiyf248_clModelStoreContainer">
+          <EntitySet Name="AnswerOption" EntityType="Self.AnswerOption" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="FAQ" EntityType="Self.FAQ" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="Module" EntityType="Self.Module" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="ModuleRequirements" EntityType="Self.ModuleRequirements" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="ModuleSubscription" EntityType="Self.ModuleSubscription" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="NewFAQ" EntityType="Self.NewFAQ" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="Notification" EntityType="Self.Notification" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="Question" EntityType="Self.Question" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="QuestionFeedback" EntityType="Self.QuestionFeedback" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="QuestionResult" EntityType="Self.QuestionResult" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="QuestionResultFeedback" EntityType="Self.QuestionResultFeedback" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="Skill" EntityType="Self.Skill" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="Student" EntityType="Self.Student" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="SupportingTeacher" EntityType="Self.SupportingTeacher" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="TeacherSkill" EntityType="Self.TeacherSkill" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="Test" EntityType="Self.Test" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="TestFeedback" EntityType="Self.TestFeedback" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="TestResult" EntityType="Self.TestResult" Schema="michiyf248_cl" store:Type="Tables" />
+          <EntitySet Name="TestResultFeedback" EntityType="Self.TestResultFeedback" Schema="michiyf248_cl" store:Type="Tables" />
+          <AssociationSet Name="FK_AnswerOption_QuestionID" Association="Self.FK_AnswerOption_QuestionID">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="AnswerOption" EntitySet="AnswerOption" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Module_Teacher" Association="Self.FK_Module_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Module" EntitySet="Module" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleRequirements_ModuleID" Association="Self.FK_ModuleRequirements_ModuleID">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="ModuleRequirements" EntitySet="ModuleRequirements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleRequirements_SkillID" Association="Self.FK_ModuleRequirements_SkillID">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="ModuleRequirements" EntitySet="ModuleRequirements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleSubscription_ModuleID" Association="Self.FK_ModuleSubscription_ModuleID">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="ModuleSubscription" EntitySet="ModuleSubscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleSubscription_StudentID" Association="Self.FK_ModuleSubscription_StudentID">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="ModuleSubscription" EntitySet="ModuleSubscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_NewFAQ_FAQ" Association="Self.FK_NewFAQ_FAQ">
+            <End Role="FAQ" EntitySet="FAQ" />
+            <End Role="NewFAQ" EntitySet="NewFAQ" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_ModuleID" Association="Self.FK_Notification_ModuleID">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_TeacherID" Association="Self.FK_Notification_TeacherID">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_TestID" Association="Self.FK_Question_TestID">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionFeedback_QuestionID" Association="Self.FK_QuestionFeedback_QuestionID">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionFeedback" EntitySet="QuestionFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionFeedback_StudentID" Association="Self.FK_QuestionFeedback_StudentID">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="QuestionFeedback" EntitySet="QuestionFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionResult_StudentID" Association="Self.FK_QuestionResult_StudentID">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="QuestionResult" EntitySet="QuestionResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionResultFeedback_QuestionResultID" Association="Self.FK_QuestionResultFeedback_QuestionResultID">
+            <End Role="QuestionResult" EntitySet="QuestionResult" />
+            <End Role="QuestionResultFeedback" EntitySet="QuestionResultFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionResultFeedback_TeacherID" Association="Self.FK_QuestionResultFeedback_TeacherID">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="QuestionResultFeedback" EntitySet="QuestionResultFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupportingTeacher_ModuleID" Association="Self.FK_SupportingTeacher_ModuleID">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="SupportingTeacher" EntitySet="SupportingTeacher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupportingTeacher_TeacherID" Association="Self.FK_SupportingTeacher_TeacherID">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="SupportingTeacher" EntitySet="SupportingTeacher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherSkill_SkillID" Association="Self.FK_TeacherSkill_SkillID">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="TeacherSkill" EntitySet="TeacherSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TeacherSkill_TeacherID" Association="Self.FK_TeacherSkill_TeacherID">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="TeacherSkill" EntitySet="TeacherSkill" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_ModuleID" Association="Self.FK_Test_ModuleID">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="Test" EntitySet="Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestFeedback_StudentID" Association="Self.FK_TestFeedback_StudentID">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="TestFeedback" EntitySet="TestFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestFeedback_TeacherID" Association="Self.FK_TestFeedback_TeacherID">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="TestResultFeedback" EntitySet="TestResultFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestFeedback_TestID" Association="Self.FK_TestFeedback_TestID">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestFeedback" EntitySet="TestFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestFeedback_TestResultID" Association="Self.FK_TestFeedback_TestResultID">
+            <End Role="TestResult" EntitySet="TestResult" />
+            <End Role="TestResultFeedback" EntitySet="TestResultFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestResult_StudentID" Association="Self.FK_TestResult_StudentID">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="TestResult" EntitySet="TestResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestResult_TestID" Association="Self.FK_TestResult_TestID">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestResult" EntitySet="TestResult" />
+          </AssociationSet>
+          <AssociationSet Name="QuestionResult_ibfk_1" Association="Self.QuestionResult_ibfk_1">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionResult" EntitySet="QuestionResult" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="michiyf248_clModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Module">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleCode" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Teacher" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="256" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Teacher1" Relationship="Self.FK_Module_Teacher" FromRole="Module" ToRole="Teacher" />
+          <NavigationProperty Name="ModuleSubscription" Relationship="Self.FK_ModuleSubscription_ModuleID" FromRole="Module" ToRole="ModuleSubscription" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_Test_ModuleID" FromRole="Module" ToRole="Test" />
+          <NavigationProperty Name="Notification" Relationship="michiyf248_clModel.FK_Notification_ModuleID" FromRole="Module" ToRole="Notification" />
+          <NavigationProperty Name="SupportingTeacher" Relationship="michiyf248_clModel.FK_SupportingTeacher_ModuleID" FromRole="Module" ToRole="SupportingTeacher" />
+          <NavigationProperty Name="ModuleRequirements" Relationship="michiyf248_clModel.FK_ModuleRequirements_ModuleID" FromRole="Module" ToRole="ModuleRequirements" />
+        </EntityType>
+        <EntityType Name="ModuleSubscription">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="ModuleID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Module" Relationship="Self.FK_ModuleSubscription_ModuleID" FromRole="ModuleSubscription" ToRole="Module" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_ModuleSubscription_StudentID" FromRole="ModuleSubscription" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="Question">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestID" Type="Int32" Nullable="false" />
+          <Property Name="QuestionText" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Answer" Type="String" MaxLength="768" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Scoring" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_Question_TestID" FromRole="Question" ToRole="Test" />
+          <NavigationProperty Name="QuestionFeedback" Relationship="Self.FK_QuestionFeedback_QuestionID" FromRole="Question" ToRole="QuestionFeedback" />
+          <NavigationProperty Name="QuestionResult" Relationship="Self.FK_QuestionResult_QuestionID" FromRole="Question" ToRole="QuestionResult" />
+          <NavigationProperty Name="AnswerOption" Relationship="michiyf248_clModel.FK_AnswerOption_QuestionID" FromRole="Question" ToRole="AnswerOption" />
+          </EntityType>
+        <EntityType Name="QuestionFeedback">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="Feedback" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_QuestionFeedback_QuestionID" FromRole="QuestionFeedback" ToRole="Question" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_QuestionFeedback_StudentID" FromRole="QuestionFeedback" ToRole="Student" />
+        </EntityType>
+        <EntityType Name="QuestionResult">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="AnswerText" Type="String" MaxLength="512" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_QuestionResult_QuestionID" FromRole="QuestionResult" ToRole="Question" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_QuestionResult_StudentID" FromRole="QuestionResult" ToRole="Student" />
+          <NavigationProperty Name="QuestionResultFeedback" Relationship="michiyf248_clModel.FK_QuestionResultFeedback_QuestionResultID" FromRole="QuestionResult" ToRole="QuestionResultFeedback" />
+          <Property Name="AnswerOption_ID" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Student">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="ModuleSubscription" Relationship="Self.FK_ModuleSubscription_StudentID" FromRole="Student" ToRole="ModuleSubscription" />
+          <NavigationProperty Name="QuestionFeedback" Relationship="Self.FK_QuestionFeedback_StudentID" FromRole="Student" ToRole="QuestionFeedback" />
+          <NavigationProperty Name="QuestionResult" Relationship="Self.FK_QuestionResult_StudentID" FromRole="Student" ToRole="QuestionResult" />
+          <NavigationProperty Name="TestResult" Relationship="Self.FK_TestResult_StudentID" FromRole="Student" ToRole="TestResult" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="128" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TestFeedback" Relationship="michiyf248_clModel.FK_TestFeedback_StudentID" FromRole="Student" ToRole="TestFeedback" />
+        </EntityType>
+        <EntityType Name="Teacher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="64" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Module" Relationship="Self.FK_Module_Teacher" FromRole="Teacher" ToRole="Module" />
+          <NavigationProperty Name="Notification" Relationship="michiyf248_clModel.FK_Notification_TeacherID" FromRole="Teacher" ToRole="Notification" />
+          <NavigationProperty Name="TeacherSkill" Relationship="michiyf248_clModel.TeacherSkill_ibfk_1" FromRole="Teacher" ToRole="TeacherSkill" />
+          <NavigationProperty Name="QuestionResultFeedback" Relationship="michiyf248_clModel.FK_QuestionResultFeedback_TeacherID" FromRole="Teacher" ToRole="QuestionResultFeedback" />
+          <NavigationProperty Name="TestResultFeedback" Relationship="michiyf248_clModel.FK_TestFeedback_TeacherID1" FromRole="Teacher" ToRole="TestResultFeedback" />
+          <NavigationProperty Name="SupportingTeacher" Relationship="michiyf248_clModel.FK_SupportingTeacher_TeacherID" FromRole="Teacher" ToRole="SupportingTeacher" />
+          <Property Name="GithubUser" Type="String" MaxLength="64" FixedLength="false" Unicode="false" />
+        </EntityType>
+        <EntityType Name="Test">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="128" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Module" Relationship="Self.FK_Test_ModuleID" FromRole="Test" ToRole="Module" />
+          <NavigationProperty Name="Question" Relationship="Self.FK_Question_TestID" FromRole="Test" ToRole="Question" />
+          <NavigationProperty Name="TestResult" Relationship="Self.FK_TestResult_TestID" FromRole="Test" ToRole="TestResult" />
+          <NavigationProperty Name="TestFeedback" Relationship="michiyf248_clModel.FK_TestFeedback_TestID" FromRole="Test" ToRole="TestFeedback" />
+        </EntityType>
+        <EntityType Name="TestResult">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestID" Type="Int32" Nullable="false" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="Score" Type="Double" Nullable="false" />
+          <NavigationProperty Name="Student" Relationship="Self.FK_TestResult_StudentID" FromRole="TestResult" ToRole="Student" />
+          <NavigationProperty Name="Test" Relationship="Self.FK_TestResult_TestID" FromRole="TestResult" ToRole="Test" />
+          <NavigationProperty Name="TestResultFeedback" Relationship="michiyf248_clModel.FK_TestFeedback_TestResultID1" FromRole="TestResult" ToRole="TestResultFeedback" />
+        </EntityType>
+        <Association Name="FK_Module_Teacher">
+          <End Role="Teacher" Type="Self.Teacher" Multiplicity="1" />
+          <End Role="Module" Type="Self.Module" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Module">
+              <PropertyRef Name="Teacher" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleSubscription_ModuleID">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="ModuleSubscription" Type="Self.ModuleSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModuleSubscription">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_ModuleID">
+          <End Role="Module" Type="Self.Module" Multiplicity="1" />
+          <End Role="Test" Type="Self.Test" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Test">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleSubscription_StudentID">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="ModuleSubscription" Type="Self.ModuleSubscription" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModuleSubscription">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Question_TestID">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="Question" Type="Self.Question" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Question">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionFeedback_QuestionID">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="QuestionFeedback" Type="Self.QuestionFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionFeedback">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionResult_QuestionID">
+          <End Role="Question" Type="Self.Question" Multiplicity="1" />
+          <End Role="QuestionResult" Type="Self.QuestionResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionResult">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionFeedback_StudentID">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="QuestionFeedback" Type="Self.QuestionFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionFeedback">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionResult_StudentID">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="QuestionResult" Type="Self.QuestionResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionResult">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestResult_StudentID">
+          <End Role="Student" Type="Self.Student" Multiplicity="1" />
+          <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestResult">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestResult_TestID">
+          <End Role="Test" Type="Self.Test" Multiplicity="1" />
+          <End Role="TestResult" Type="Self.TestResult" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestResult">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="michiyf248_clEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Module" EntityType="Self.Module" />
+          <EntitySet Name="ModuleSubscription" EntityType="Self.ModuleSubscription" />
+          <EntitySet Name="Question" EntityType="Self.Question" />
+          <EntitySet Name="QuestionFeedback" EntityType="Self.QuestionFeedback" />
+          <EntitySet Name="QuestionResult" EntityType="Self.QuestionResult" />
+          <EntitySet Name="Student" EntityType="Self.Student" />
+          <EntitySet Name="Teacher" EntityType="Self.Teacher" />
+          <EntitySet Name="Test" EntityType="Self.Test" />
+          <EntitySet Name="TestResult" EntityType="Self.TestResult" />
+          <AssociationSet Name="FK_Module_Teacher" Association="Self.FK_Module_Teacher">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Module" EntitySet="Module" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleSubscription_ModuleID" Association="Self.FK_ModuleSubscription_ModuleID">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="ModuleSubscription" EntitySet="ModuleSubscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_ModuleID" Association="Self.FK_Test_ModuleID">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="Test" EntitySet="Test" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleSubscription_StudentID" Association="Self.FK_ModuleSubscription_StudentID">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="ModuleSubscription" EntitySet="ModuleSubscription" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Question_TestID" Association="Self.FK_Question_TestID">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="Question" EntitySet="Question" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionFeedback_QuestionID" Association="Self.FK_QuestionFeedback_QuestionID">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionFeedback" EntitySet="QuestionFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionResult_QuestionID" Association="Self.FK_QuestionResult_QuestionID">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="QuestionResult" EntitySet="QuestionResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionFeedback_StudentID" Association="Self.FK_QuestionFeedback_StudentID">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="QuestionFeedback" EntitySet="QuestionFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionResult_StudentID" Association="Self.FK_QuestionResult_StudentID">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="QuestionResult" EntitySet="QuestionResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestResult_StudentID" Association="Self.FK_TestResult_StudentID">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="TestResult" EntitySet="TestResult" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestResult_TestID" Association="Self.FK_TestResult_TestID">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestResult" EntitySet="TestResult" />
+          </AssociationSet>
+          <EntitySet Name="Notification" EntityType="michiyf248_clModel.Notification" />
+          <AssociationSet Name="FK_Notification_ModuleID" Association="michiyf248_clModel.FK_Notification_ModuleID">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Notification_TeacherID" Association="michiyf248_clModel.FK_Notification_TeacherID">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="Notification" EntitySet="Notification" />
+          </AssociationSet>
+          <EntitySet Name="Skill" EntityType="michiyf248_clModel.Skill" />
+          <EntitySet Name="TeacherSkill" EntityType="michiyf248_clModel.TeacherSkill" />
+          <AssociationSet Name="TeacherSkill_ibfk_2" Association="michiyf248_clModel.TeacherSkill_ibfk_2">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="TeacherSkill" EntitySet="TeacherSkill" />
+          </AssociationSet>
+          <AssociationSet Name="TeacherSkill_ibfk_1" Association="michiyf248_clModel.TeacherSkill_ibfk_1">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="TeacherSkill" EntitySet="TeacherSkill" />
+          </AssociationSet>
+          <EntitySet Name="QuestionResultFeedback" EntityType="michiyf248_clModel.QuestionResultFeedback" />
+          <EntitySet Name="TestResultFeedback" EntityType="michiyf248_clModel.TestResultFeedback" />
+          <AssociationSet Name="FK_QuestionResultFeedback_QuestionResultID" Association="michiyf248_clModel.FK_QuestionResultFeedback_QuestionResultID">
+            <End Role="QuestionResult" EntitySet="QuestionResult" />
+            <End Role="QuestionResultFeedback" EntitySet="QuestionResultFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_QuestionResultFeedback_TeacherID" Association="michiyf248_clModel.FK_QuestionResultFeedback_TeacherID">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="QuestionResultFeedback" EntitySet="QuestionResultFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestFeedback_TeacherID1" Association="michiyf248_clModel.FK_TestFeedback_TeacherID1">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="TestResultFeedback" EntitySet="TestResultFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestFeedback_TestResultID1" Association="michiyf248_clModel.FK_TestFeedback_TestResultID1">
+            <End Role="TestResult" EntitySet="TestResult" />
+            <End Role="TestResultFeedback" EntitySet="TestResultFeedback" />
+          </AssociationSet>
+          <EntitySet Name="AnswerOption" EntityType="michiyf248_clModel.AnswerOption" />
+          <AssociationSet Name="FK_AnswerOption_QuestionID" Association="michiyf248_clModel.FK_AnswerOption_QuestionID">
+            <End Role="Question" EntitySet="Question" />
+            <End Role="AnswerOption" EntitySet="AnswerOption" />
+          </AssociationSet>
+          <EntitySet Name="FAQ" EntityType="michiyf248_clModel.FAQ" />
+          <EntitySet Name="TestFeedback" EntityType="michiyf248_clModel.TestFeedback" />
+          <AssociationSet Name="FK_TestFeedback_StudentID" Association="michiyf248_clModel.FK_TestFeedback_StudentID">
+            <End Role="Student" EntitySet="Student" />
+            <End Role="TestFeedback" EntitySet="TestFeedback" />
+          </AssociationSet>
+          <AssociationSet Name="FK_TestFeedback_TestID" Association="michiyf248_clModel.FK_TestFeedback_TestID">
+            <End Role="Test" EntitySet="Test" />
+            <End Role="TestFeedback" EntitySet="TestFeedback" />
+          </AssociationSet>
+          <EntitySet Name="SupportingTeacher" EntityType="michiyf248_clModel.SupportingTeacher" />
+          <AssociationSet Name="FK_SupportingTeacher_ModuleID" Association="michiyf248_clModel.FK_SupportingTeacher_ModuleID">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="SupportingTeacher" EntitySet="SupportingTeacher" />
+          </AssociationSet>
+          <AssociationSet Name="FK_SupportingTeacher_TeacherID" Association="michiyf248_clModel.FK_SupportingTeacher_TeacherID">
+            <End Role="Teacher" EntitySet="Teacher" />
+            <End Role="SupportingTeacher" EntitySet="SupportingTeacher" />
+          </AssociationSet>
+          <EntitySet Name="ModuleRequirements" EntityType="michiyf248_clModel.ModuleRequirements" />
+          <AssociationSet Name="FK_ModuleRequirements_ModuleID" Association="michiyf248_clModel.FK_ModuleRequirements_ModuleID">
+            <End Role="Module" EntitySet="Module" />
+            <End Role="ModuleRequirements" EntitySet="ModuleRequirements" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ModuleRequirements_SkillID" Association="michiyf248_clModel.FK_ModuleRequirements_SkillID">
+            <End Role="Skill" EntitySet="Skill" />
+            <End Role="ModuleRequirements" EntitySet="ModuleRequirements" />
+          </AssociationSet>
+          <EntitySet Name="NewFAQ" EntityType="michiyf248_clModel.NewFAQ" />
+          <AssociationSet Name="FK_NewFAQ_FAQ" Association="michiyf248_clModel.FK_NewFAQ_FAQ">
+            <End Role="FAQ" EntitySet="FAQ" />
+            <End Role="NewFAQ" EntitySet="NewFAQ" />
+          </AssociationSet>
+          </EntityContainer>
+        <EntityType Name="Notification">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleID" Type="Int32" Nullable="false" />
+          <Property Name="TeacherID" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Module" Relationship="michiyf248_clModel.FK_Notification_ModuleID" FromRole="Notification" ToRole="Module" />
+          <NavigationProperty Name="Teacher" Relationship="michiyf248_clModel.FK_Notification_TeacherID" FromRole="Notification" ToRole="Teacher" />
+        </EntityType>
+        <Association Name="FK_Notification_ModuleID">
+          <End Type="michiyf248_clModel.Module" Role="Module" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="michiyf248_clModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Notification_TeacherID">
+          <End Type="michiyf248_clModel.Teacher" Role="Teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="michiyf248_clModel.Notification" Role="Notification" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="Notification">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Skill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="SkillName" Type="String" Nullable="false" MaxLength="130" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="TeacherSkill" Relationship="michiyf248_clModel.TeacherSkill_ibfk_2" FromRole="Skill" ToRole="TeacherSkill" />
+          <NavigationProperty Name="ModuleRequirements" Relationship="michiyf248_clModel.FK_ModuleRequirements_SkillID" FromRole="Skill" ToRole="ModuleRequirements" />
+        </EntityType>
+        <EntityType Name="TeacherSkill">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TeacherID" Type="Int32" Nullable="false" />
+          <Property Name="SkillID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Skill" Relationship="michiyf248_clModel.TeacherSkill_ibfk_2" FromRole="TeacherSkill" ToRole="Skill" />
+          <NavigationProperty Name="Teacher" Relationship="michiyf248_clModel.TeacherSkill_ibfk_1" FromRole="TeacherSkill" ToRole="Teacher" />
+        </EntityType>
+        <Association Name="TeacherSkill_ibfk_2">
+          <End Type="michiyf248_clModel.Skill" Role="Skill" Multiplicity="1" />
+          <End Type="michiyf248_clModel.TeacherSkill" Role="TeacherSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeacherSkill">
+              <PropertyRef Name="SkillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="TeacherSkill_ibfk_1">
+          <End Type="michiyf248_clModel.Teacher" Role="Teacher" Multiplicity="1" />
+          <End Type="michiyf248_clModel.TeacherSkill" Role="TeacherSkill" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TeacherSkill">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="QuestionResultFeedback">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionResultID" Type="Int32" Nullable="false" />
+          <Property Name="TeacherID" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="QuestionResult" Relationship="michiyf248_clModel.FK_QuestionResultFeedback_QuestionResultID" FromRole="QuestionResultFeedback" ToRole="QuestionResult" />
+          <NavigationProperty Name="Teacher" Relationship="michiyf248_clModel.FK_QuestionResultFeedback_TeacherID" FromRole="QuestionResultFeedback" ToRole="Teacher" />
+        </EntityType>
+        <EntityType Name="TestResultFeedback">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestResultID" Type="Int32" Nullable="false" />
+          <Property Name="TeacherID" Type="Int32" Nullable="false" />
+          <Property Name="Text" Type="String" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="ReadStatus" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Teacher" Relationship="michiyf248_clModel.FK_TestFeedback_TeacherID1" FromRole="TestResultFeedback" ToRole="Teacher" />
+          <NavigationProperty Name="TestResult" Relationship="michiyf248_clModel.FK_TestFeedback_TestResultID1" FromRole="TestResultFeedback" ToRole="TestResult" />
+        </EntityType>
+        <Association Name="FK_QuestionResultFeedback_QuestionResultID">
+          <End Type="michiyf248_clModel.QuestionResult" Role="QuestionResult" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="michiyf248_clModel.QuestionResultFeedback" Role="QuestionResultFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="QuestionResult">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionResultFeedback">
+              <PropertyRef Name="QuestionResultID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_QuestionResultFeedback_TeacherID">
+          <End Type="michiyf248_clModel.Teacher" Role="Teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="michiyf248_clModel.QuestionResultFeedback" Role="QuestionResultFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="QuestionResultFeedback">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestFeedback_TeacherID1">
+          <End Type="michiyf248_clModel.Teacher" Role="Teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="michiyf248_clModel.TestResultFeedback" Role="TestResultFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestResultFeedback">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestFeedback_TestResultID1">
+          <End Type="michiyf248_clModel.TestResult" Role="TestResult" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="michiyf248_clModel.TestResultFeedback" Role="TestResultFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="TestResult">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestResultFeedback">
+              <PropertyRef Name="TestResultID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="AnswerOption">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="QuestionID" Type="Int32" Nullable="false" />
+          <Property Name="CorrectAnswer" Type="Int32" Nullable="false" />
+          <Property Name="AnswerText" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Question" Relationship="michiyf248_clModel.FK_AnswerOption_QuestionID" FromRole="AnswerOption" ToRole="Question" />
+        </EntityType>
+        <Association Name="FK_AnswerOption_QuestionID">
+          <End Type="michiyf248_clModel.Question" Role="Question" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="michiyf248_clModel.AnswerOption" Role="AnswerOption" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Question">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="AnswerOption">
+              <PropertyRef Name="QuestionID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FAQ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+          <Property Name="Answer" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="NewFAQ" Relationship="michiyf248_clModel.FK_NewFAQ_FAQ" FromRole="FAQ" ToRole="NewFAQ" />
+        </EntityType>
+        <EntityType Name="TestFeedback">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="TestID" Type="Int32" Nullable="false" />
+          <Property Name="StudentID" Type="Int32" Nullable="false" />
+          <Property Name="Feedback" Type="String" Nullable="false" MaxLength="512" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Student" Relationship="michiyf248_clModel.FK_TestFeedback_StudentID" FromRole="TestFeedback" ToRole="Student" />
+          <NavigationProperty Name="Test" Relationship="michiyf248_clModel.FK_TestFeedback_TestID" FromRole="TestFeedback" ToRole="Test" />
+        </EntityType>
+        <Association Name="FK_TestFeedback_StudentID">
+          <End Type="michiyf248_clModel.Student" Role="Student" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="michiyf248_clModel.TestFeedback" Role="TestFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Student">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestFeedback">
+              <PropertyRef Name="StudentID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_TestFeedback_TestID">
+          <End Type="michiyf248_clModel.Test" Role="Test" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="michiyf248_clModel.TestFeedback" Role="TestFeedback" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="TestFeedback">
+              <PropertyRef Name="TestID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="SupportingTeacher">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ModuleID" Type="Int32" Nullable="false" />
+          <Property Name="TeacherID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Module" Relationship="michiyf248_clModel.FK_SupportingTeacher_ModuleID" FromRole="SupportingTeacher" ToRole="Module" />
+          <NavigationProperty Name="Teacher" Relationship="michiyf248_clModel.FK_SupportingTeacher_TeacherID" FromRole="SupportingTeacher" ToRole="Teacher" />
+        </EntityType>
+        <Association Name="FK_SupportingTeacher_ModuleID">
+          <End Type="michiyf248_clModel.Module" Role="Module" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="michiyf248_clModel.SupportingTeacher" Role="SupportingTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SupportingTeacher">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_SupportingTeacher_TeacherID">
+          <End Type="michiyf248_clModel.Teacher" Role="Teacher" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="michiyf248_clModel.SupportingTeacher" Role="SupportingTeacher" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teacher">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="SupportingTeacher">
+              <PropertyRef Name="TeacherID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="ModuleRequirements">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="ModuleID" Type="Int32" Nullable="false" />
+          <Property Name="SkillID" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Module" Relationship="michiyf248_clModel.FK_ModuleRequirements_ModuleID" FromRole="ModuleRequirements" ToRole="Module" />
+          <NavigationProperty Name="Skill" Relationship="michiyf248_clModel.FK_ModuleRequirements_SkillID" FromRole="ModuleRequirements" ToRole="Skill" />
+        </EntityType>
+        <Association Name="FK_ModuleRequirements_ModuleID">
+          <End Type="michiyf248_clModel.Module" Role="Module" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="michiyf248_clModel.ModuleRequirements" Role="ModuleRequirements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Module">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModuleRequirements">
+              <PropertyRef Name="ModuleID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ModuleRequirements_SkillID">
+          <End Type="michiyf248_clModel.Skill" Role="Skill" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Type="michiyf248_clModel.ModuleRequirements" Role="ModuleRequirements" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Skill">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="ModuleRequirements">
+              <PropertyRef Name="SkillID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="NewFAQ">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Question" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="Answered" Type="Boolean" Nullable="false" />
+          <Property Name="AnsweredByFAQ" Type="Int32" />
+          <NavigationProperty Name="FAQ" Relationship="michiyf248_clModel.FK_NewFAQ_FAQ" FromRole="NewFAQ" ToRole="FAQ" />
+        </EntityType>
+        <Association Name="FK_NewFAQ_FAQ">
+          <End Type="michiyf248_clModel.FAQ" Role="FAQ" Multiplicity="0..1" />
+          <End Type="michiyf248_clModel.NewFAQ" Role="NewFAQ" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FAQ">
+              <PropertyRef Name="ID" />
+            </Principal>
+            <Dependent Role="NewFAQ">
+              <PropertyRef Name="AnsweredByFAQ" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="michiyf248_clModelStoreContainer" CdmEntityContainer="michiyf248_clEntities">
+          <EntitySetMapping Name="Module">
+            <EntityTypeMapping TypeName="michiyf248_clModel.Module">
+              <MappingFragment StoreEntitySet="Module">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ModuleCode" ColumnName="ModuleCode" />
+                <ScalarProperty Name="Teacher" ColumnName="Teacher" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModuleSubscription">
+            <EntityTypeMapping TypeName="michiyf248_clModel.ModuleSubscription">
+              <MappingFragment StoreEntitySet="ModuleSubscription">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Question">
+            <EntityTypeMapping TypeName="michiyf248_clModel.Question">
+              <MappingFragment StoreEntitySet="Question">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="QuestionText" ColumnName="QuestionText" />
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Scoring" ColumnName="Scoring" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionFeedback">
+            <EntityTypeMapping TypeName="michiyf248_clModel.QuestionFeedback">
+              <MappingFragment StoreEntitySet="QuestionFeedback">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionResult">
+            <EntityTypeMapping TypeName="michiyf248_clModel.QuestionResult">
+              <MappingFragment StoreEntitySet="QuestionResult">
+                <ScalarProperty Name="AnswerOption_ID" ColumnName="AnswerOption_ID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="AnswerText" ColumnName="AnswerText" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Student">
+            <EntityTypeMapping TypeName="michiyf248_clModel.Student">
+              <MappingFragment StoreEntitySet="Student">
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teacher">
+            <EntityTypeMapping TypeName="michiyf248_clModel.Teacher">
+              <MappingFragment StoreEntitySet="Teacher">
+                <ScalarProperty Name="GithubUser" ColumnName="GithubUser" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test">
+            <EntityTypeMapping TypeName="michiyf248_clModel.Test">
+              <MappingFragment StoreEntitySet="Test">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestResult">
+            <EntityTypeMapping TypeName="michiyf248_clModel.TestResult">
+              <MappingFragment StoreEntitySet="TestResult">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="Score" ColumnName="Score" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Notification">
+            <EntityTypeMapping TypeName="michiyf248_clModel.Notification">
+              <MappingFragment StoreEntitySet="Notification">
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Skill">
+            <EntityTypeMapping TypeName="michiyf248_clModel.Skill">
+              <MappingFragment StoreEntitySet="Skill">
+                <ScalarProperty Name="SkillName" ColumnName="SkillName" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TeacherSkill">
+            <EntityTypeMapping TypeName="michiyf248_clModel.TeacherSkill">
+              <MappingFragment StoreEntitySet="TeacherSkill">
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="QuestionResultFeedback">
+            <EntityTypeMapping TypeName="michiyf248_clModel.QuestionResultFeedback">
+              <MappingFragment StoreEntitySet="QuestionResultFeedback">
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+                <ScalarProperty Name="QuestionResultID" ColumnName="QuestionResultID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestResultFeedback">
+            <EntityTypeMapping TypeName="michiyf248_clModel.TestResultFeedback">
+              <MappingFragment StoreEntitySet="TestResultFeedback">
+                <ScalarProperty Name="ReadStatus" ColumnName="ReadStatus" />
+                <ScalarProperty Name="Text" ColumnName="Text" />
+                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+                <ScalarProperty Name="TestResultID" ColumnName="TestResultID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="AnswerOption">
+            <EntityTypeMapping TypeName="michiyf248_clModel.AnswerOption">
+              <MappingFragment StoreEntitySet="AnswerOption">
+                <ScalarProperty Name="AnswerText" ColumnName="AnswerText" />
+                <ScalarProperty Name="CorrectAnswer" ColumnName="CorrectAnswer" />
+                <ScalarProperty Name="QuestionID" ColumnName="QuestionID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FAQ">
+            <EntityTypeMapping TypeName="michiyf248_clModel.FAQ">
+              <MappingFragment StoreEntitySet="FAQ">
+                <ScalarProperty Name="Answer" ColumnName="Answer" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="TestFeedback">
+            <EntityTypeMapping TypeName="michiyf248_clModel.TestFeedback">
+              <MappingFragment StoreEntitySet="TestFeedback">
+                <ScalarProperty Name="Feedback" ColumnName="Feedback" />
+                <ScalarProperty Name="StudentID" ColumnName="StudentID" />
+                <ScalarProperty Name="TestID" ColumnName="TestID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="SupportingTeacher">
+            <EntityTypeMapping TypeName="michiyf248_clModel.SupportingTeacher">
+              <MappingFragment StoreEntitySet="SupportingTeacher">
+                <ScalarProperty Name="TeacherID" ColumnName="TeacherID" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="ModuleRequirements">
+            <EntityTypeMapping TypeName="michiyf248_clModel.ModuleRequirements">
+              <MappingFragment StoreEntitySet="ModuleRequirements">
+                <ScalarProperty Name="SkillID" ColumnName="SkillID" />
+                <ScalarProperty Name="ModuleID" ColumnName="ModuleID" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="NewFAQ">
+            <EntityTypeMapping TypeName="michiyf248_clModel.NewFAQ">
+              <MappingFragment StoreEntitySet="NewFAQ">
+                <ScalarProperty Name="AnsweredByFAQ" ColumnName="AnsweredByFAQ" />
+                <ScalarProperty Name="Answered" ColumnName="Answered" />
+                <ScalarProperty Name="Question" ColumnName="Question" />
+                <ScalarProperty Name="ID" ColumnName="ID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

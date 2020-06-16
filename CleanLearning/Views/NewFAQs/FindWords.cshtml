@@ -1,0 +1,35 @@
+﻿@model IEnumerable<CleanLearning.Models.NewFAQ>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            Word
+        </th>
+        <th>
+            Counter
+        </th>
+    </tr>
+
+    @foreach (var item in ViewBag.dict)
+    {
+        <tr>
+            <td>
+                @item.Key
+            </td>
+            <td>
+                @item.Value
+            </td>
+        </tr>
+    }
+
+</table>
